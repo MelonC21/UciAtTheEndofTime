@@ -7,6 +7,9 @@ public class FadingScript : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
 
     [SerializeField] private float fadeDuration = 5.0f;
+    [SerializeField] private int fadeDelay = 0;
+    [SerializeField] private float fadeAlpha = 0f;
+    [SerializeField] private float startingAlpha = 1f;
 
     [SerializeField] private bool fadeIn = false;
 
@@ -25,16 +28,18 @@ public class FadingScript : MonoBehaviour
 
     public void FadeIn()
     {
-        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, fadeDuration));
+        StartCoroutine(FadeCanvasGroup(canvasGroup, startingAlpha, fadeAlpha, fadeDuration));
     }
 
     public void FadeOut()
     {
-        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 1, fadeDuration));
+        StartCoroutine(FadeCanvasGroup(canvasGroup, fadeAlpha, startingAlpha, fadeDuration));
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
     {
+        yield return new WaitForSeconds(fadeDelay);
+
         float elapsedTime = 0.0f;
         while (elapsedTime < fadeDuration)
         {
