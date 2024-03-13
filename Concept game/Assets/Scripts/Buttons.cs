@@ -6,6 +6,8 @@ public class Buttons : MonoBehaviour
 {
     public FadingScript fadeUIBlack;
     [SerializeField] private GameObject textElements;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject lossScreen;
 
     [SerializeField] private AudioSource musicToPlay;
     [SerializeField] private float fadeDuration = 1.0f;
@@ -27,6 +29,9 @@ public class Buttons : MonoBehaviour
     {
         //Add win?
         Debug.Log("You Win??");
+        fadeUIBlack.FadeOut();
+        textElements.SetActive(false);
+        winScreen.SetActive(true);
     }
 
     public void YesButton()
@@ -45,6 +50,7 @@ public class Buttons : MonoBehaviour
             //AddLoss
             fadeUIBlack.FadeOut();
             textElements.SetActive(false);
+            lossScreen.SetActive(true);
         }
     }
 

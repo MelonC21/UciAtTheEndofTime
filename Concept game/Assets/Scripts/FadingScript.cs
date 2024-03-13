@@ -13,7 +13,7 @@ public class FadingScript : MonoBehaviour
 
     [SerializeField] private bool fadeIn = false;
 
-    private void Start()
+    private void OnEnable()
     {
         if (fadeIn)
         {
